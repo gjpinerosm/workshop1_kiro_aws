@@ -1,0 +1,14 @@
+{
+  "name": "scientific-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Calculadora cientifica estilo Casio fx-82MS (archivo HTML unico). El motor puro vive en src/engine.js para poder verificarlo de forma aislada; index.html lo embebe.",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "fast-check": "^3.23.1",
+    "vitest": "^2.1.8"
+  }
+}

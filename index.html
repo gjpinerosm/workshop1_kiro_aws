@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Científica (Casio fx-82MS)</title>
+
+    <!--
+      Requirement 1.7: toda la aplicación (estructura, estilos y lógica) reside
+      en este único archivo HTML, sin dependencias externas. El CSS vive en este
+      <style> embebido y el JavaScript en el <script> embebido del final de
+      <body>. Las siguientes tareas rellenan ambos bloques.
+    -->
+    <style>
+      /* =================================================================
+         Estilos de la Calculadora (carcasa, Pantalla, teclado), estilo
+         Casio fx-82MS (tarea 10.1).
+
+         Objetivos de requisito cubiertos por el CSS:
+           - Req 1.1: carcasa oscura con la Pantalla arriba y el teclado
+             debajo (orden del flujo + flex column).
+           - Req 1.2: Pantalla LCD de dos líneas visibles simultáneamente.
+           - Req 1.4: teclas grises con etiqueta principal legible.
+           - Req 1.5: etiquetas secundarias (multifunción) diferenciadas
+             visualmente de la etiqueta principal.
+           - Req 1.6: todo visible sin scroll dentro de la ventana
+             (dimensionado al viewport con unidades vh/clamp y sin overflow).
+         ================================================================= */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        /* Centrar la carcasa y evitar scroll de página (Req 1.6). */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: clamp(6px, 1.5vmin, 16px);
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 0%, #3a3f47 0%, #1b1d22 70%);
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        color: #f4f4f4;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* --- Carcasa oscura (Req 1.1) ------------------------------------ */
+      .carcasa {
+        display: flex;
+        flex-direction: column;
+        /* La carcasa nunca excede la ventana: se ajusta con vmin para que
+           Pantalla y teclas quepan sin scroll (Req 1.6). */
+        width: min(92vw, 420px);
+        height: min(96vh, 720px);
+        padding: clamp(10px, 2.2vmin, 22px);
+        gap: clamp(8px, 1.8vmin, 16px);
+        background: linear-gradient(160deg, #2b2f36 0%, #15171b 100%);
+        border: 1px solid #000;
+        border-radius: 18px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.06),
+          0 10px 30px rgba(0, 0, 0, 0.55);
+      }
+
+      .marca {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        font-size: clamp(9px, 1.6vmin, 13px);
+        letter-spacing: 0.05em;
+        color: #c9ccd1;
+      }
+      .marca .modelo {
+        font-weight: 700;
+      }
+      .marca .submarca {
+        font-size: 0.8em;
+        color: #8d9298;
+      }
+
+      /* --- Pantalla LCD de dos líneas (Req 1.2) ------------------------ */
+      .pantalla {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2px;
+        padding: clamp(8px, 1.8vmin, 16px);
+        min-height: clamp(70px, 14vh, 120px);
+        background: #c7d2b8; /* verde LCD característico */
+        border: 2px solid #11130f;
+        border-radius: 6px;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+        color: #1c2416;
+        font-family: "Courier New", "Lucida Console", monospace;
+        overflow: hidden;
+      }
+
+      /* Línea_Superior: Expresión. Se mantiene en una sola línea y recorta
+         por la izquierda (los últimos caracteres quedan visibles); el
+         desplazamiento fino es de la tarea 9.2. */
+      .linea-superior {
+        min-height: 1.3em;
+        font-size: clamp(13px, 2.6vmin, 20px);
+        line-height: 1.3;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        direction: rtl; /* recorta por la izquierda mostrando el final */
+      }
+      .linea-superior > span {
+        direction: ltr;
+        unicode-bidi: plaintext;
+      }
+
+      /* Línea_Inferior: Resultado / "0" / mensaje de error. */
+      .linea-inferior {
+        min-height: 1.4em;
+        font-size: clamp(22px, 5vmin, 40px);
+        font-weight: 700;
+        line-height: 1.1;
+        text-align: right;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      /* --- Rejilla de teclado (Req 1.1, 1.6) --------------------------- */
+      .teclado {
+        flex: 1 1 auto;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: clamp(4px, 1.2vmin, 9px);
+        min-height: 0; /* permite que la rejilla encoja sin provocar scroll */
+      }
+
+      /* --- Teclas grises (Req 1.4) ------------------------------------- */
+      .tecla {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        min-height: 0;
+        padding: 2px;
+        border: 1px solid #2a2d33;
+        border-radius: 7px;
+        background: linear-gradient(180deg, #6c7178 0%, #4a4e55 100%);
+        color: #f6f7f8;
+        font-size: clamp(11px, 2.2vmin, 17px);
+        font-weight: 600;
+        line-height: 1.05;
+        cursor: pointer;
+        user-select: none;
+        text-align: center;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.18),
+          0 2px 3px rgba(0, 0, 0, 0.45);
+        transition: transform 0.03s ease, filter 0.1s ease;
+      }
+      .tecla:hover {
+        filter: brightness(1.08);
+      }
+      .tecla:active {
+        transform: translateY(1px);
+        filter: brightness(0.92);
+      }
+      .tecla:focus-visible {
+        outline: 2px solid #8ecbff;
+        outline-offset: 1px;
+      }
+
+      /* Etiqueta principal legible dentro de la tecla. */
+      .tecla .principal {
+        display: block;
+        pointer-events: none;
+      }
+
+      /* --- Etiquetas secundarias multifunción (Req 1.5) ---------------- */
+      /* Diferenciadas visualmente: menor tamaño, color distinto y ubicadas
+         sobre la etiqueta principal, imitando la serigrafía del hardware. */
+      .tecla .secundaria {
+        position: absolute;
+        top: 3px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 5px;
+        font-size: clamp(6px, 1.3vmin, 9px);
+        font-weight: 600;
+        line-height: 1;
+        pointer-events: none;
+      }
+      .tecla .secundaria .shift {
+        color: #d9b24a; /* dorado SHIFT */
+      }
+      .tecla .secundaria .alpha {
+        color: #d4453f; /* rojo ALPHA */
+      }
+      /* Las teclas con serigrafía secundaria reservan espacio arriba para
+         que la etiqueta principal no se solape con ella. */
+      .tecla.con-secundaria .principal {
+        margin-top: clamp(8px, 1.6vmin, 12px);
+      }
+
+      /* --- Variantes de color por categoría de tecla ------------------- */
+      .tecla.decorativa {
+        background: linear-gradient(180deg, #595d64 0%, #3b3e44 100%);
+        font-size: clamp(9px, 1.9vmin, 14px);
+      }
+      .tecla.control-ac {
+        background: linear-gradient(180deg, #b06a6a 0%, #8a4444 100%);
+      }
+      .tecla.control-del {
+        background: linear-gradient(180deg, #8a6fb0 0%, #5f4785 100%);
+      }
+      .tecla.operador,
+      .tecla.igual {
+        background: linear-gradient(180deg, #7a7f87 0%, #565b63 100%);
+      }
+      .tecla.igual {
+        background: linear-gradient(180deg, #4f7fae 0%, #335c86 100%);
+      }
+      .tecla.digito {
+        background: linear-gradient(180deg, #767b83 0%, #52565d 100%);
+      }
+
+      /* Teclas que ocupan dos columnas en la rejilla. */
+      .tecla.ancho-2 {
+        grid-column: span 2;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      Contenedores raíz (marcadores de posición vacíos). La maquetación real
+      (carcasa oscura, Pantalla LCD de dos líneas y rejilla de teclado visible
+      sin scroll) se construye en la tarea 10.
+        - Requirement 1.1: carcasa con la Pantalla arriba y el teclado debajo.
+        - Requirement 1.2: Pantalla LCD compuesta por Línea_Superior y
+          Línea_Inferior visibles de forma simultánea.
+    -->
+    <main id="carcasa" class="carcasa">
+      <!-- Leyenda de marca (decorativa) estilo Casio fx-82MS. -->
+      <div class="marca">
+        <span class="modelo">CASIO</span>
+        <span class="submarca">fx-82MS &nbsp;·&nbsp; S-V.P.A.M.</span>
+      </div>
+
+      <!--
+        Área de Pantalla: Línea_Superior (Expresión) y Línea_Inferior
+        (Resultado / error).
+          - Req 1.2: ambas líneas visibles de forma simultánea.
+          - Req 1.3: al cargar, Línea_Superior y Línea_Inferior están VACÍAS
+            en el DOM. El Display Controller (tarea 11.1) las poblará al
+            cablear el estado inicial (Línea_Inferior pasará a "0", Req 2.4).
+      -->
+      <section id="pantalla" class="pantalla" aria-label="Pantalla">
+        <div
+          id="linea-superior"
+          class="linea-superior"
+          aria-label="Expresión"
+          aria-live="polite"
+        ></div>
+        <div
+          id="linea-inferior"
+          class="linea-inferior"
+          aria-label="Resultado"
+          aria-live="polite"
+        ></div>
+      </section>
+
+      <!--
+        Rejilla de teclado (5 columnas) estilo Casio fx-82MS.
+          - Req 1.4: cada tecla tiene una etiqueta principal legible.
+          - Req 1.5: las teclas multifunción muestran etiquetas secundarias
+            (serigrafía SHIFT en dorado / ALPHA en rojo) diferenciadas.
+          - Req 10.1: se muestran de forma permanente las seis
+            Teclas_Decorativas (SHIFT, ALPHA, MODE, RCL, nCr, hyp).
+        Cada tecla declara `data-key` con el identificador estable que el
+        Input Handler (tarea 11.1) mapeará a una acción/token. Para las teclas
+        de entrada, `data-key` coincide con el lexema que reconoce el
+        Motor_Cálculo (engine.js). Aquí NO se cablea ningún evento (tarea 11.1).
+      -->
+      <section id="teclado" class="teclado" aria-label="Teclado">
+        <!-- Fila 1: teclas decorativas superiores (Req 10.1). -->
+        <button type="button" class="tecla decorativa" data-key="SHIFT">
+          <span class="principal">SHIFT</span>
+        </button>
+        <button type="button" class="tecla decorativa" data-key="ALPHA">
+          <span class="principal">ALPHA</span>
+        </button>
+        <button type="button" class="tecla decorativa" data-key="MODE">
+          <span class="principal">MODE</span>
+        </button>
+        <button type="button" class="tecla decorativa" data-key="RCL">
+          <span class="principal">RCL</span>
+        </button>
+        <button type="button" class="tecla decorativa" data-key="hyp">
+          <span class="principal">hyp</span>
+        </button>
+
+        <!-- Fila 2: funciones científicas prefijas y nCr decorativa. -->
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="sin"
+        >
+          <span class="secundaria"
+            ><span class="shift">sin⁻¹</span><span class="alpha">D</span></span
+          >
+          <span class="principal">sin</span>
+        </button>
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="cos"
+        >
+          <span class="secundaria"
+            ><span class="shift">cos⁻¹</span><span class="alpha">E</span></span
+          >
+          <span class="principal">cos</span>
+        </button>
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="tan"
+        >
+          <span class="secundaria"
+            ><span class="shift">tan⁻¹</span><span class="alpha">F</span></span
+          >
+          <span class="principal">tan</span>
+        </button>
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="log"
+        >
+          <span class="secundaria"
+            ><span class="shift">10ˣ</span><span class="alpha">G</span></span
+          >
+          <span class="principal">log</span>
+        </button>
+        <button type="button" class="tecla decorativa" data-key="nCr">
+          <span class="principal">nCr</span>
+        </button>
+
+        <!-- Fila 3: ln, raíces, potencias y recíproco. -->
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="ln"
+        >
+          <span class="secundaria"
+            ><span class="shift">eˣ</span><span class="alpha">H</span></span
+          >
+          <span class="principal">ln</span>
+        </button>
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="√"
+        >
+          <span class="secundaria"
+            ><span class="shift">∛</span><span class="alpha">I</span></span
+          >
+          <span class="principal">√</span>
+        </button>
+        <button type="button" class="tecla funcion" data-key="∛">
+          <span class="principal">∛</span>
+        </button>
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="x²"
+        >
+          <span class="secundaria"
+            ><span class="shift">x³</span><span class="alpha">J</span></span
+          >
+          <span class="principal">x²</span>
+        </button>
+        <button type="button" class="tecla funcion" data-key="x⁻¹">
+          <span class="principal">x⁻¹</span>
+        </button>
+
+        <!-- Fila 4: x³, potencia, constante π, EXP y Ans. -->
+        <button type="button" class="tecla funcion" data-key="x³">
+          <span class="principal">x³</span>
+        </button>
+        <button type="button" class="tecla operador" data-key="^">
+          <span class="principal">xʸ</span>
+        </button>
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="π"
+        >
+          <span class="secundaria"
+            ><span class="shift">(−)</span><span class="alpha">A</span></span
+          >
+          <span class="principal">π</span>
+        </button>
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="EXP"
+        >
+          <span class="secundaria"
+            ><span class="shift">π</span><span class="alpha">B</span></span
+          >
+          <span class="principal">EXP</span>
+        </button>
+        <button
+          type="button"
+          class="tecla funcion con-secundaria"
+          data-key="Ans"
+        >
+          <span class="secundaria"
+            ><span class="shift">DRG▸</span><span class="alpha">C</span></span
+          >
+          <span class="principal">Ans</span>
+        </button>
+
+        <!-- Fila 5: control superior (AC, DEL) + paréntesis + porcentaje. -->
+        <button type="button" class="tecla control-del" data-key="DEL">
+          <span class="principal">DEL</span>
+        </button>
+        <button type="button" class="tecla control-ac" data-key="AC">
+          <span class="principal">AC</span>
+        </button>
+        <button type="button" class="tecla operador" data-key="(">
+          <span class="principal">(</span>
+        </button>
+        <button type="button" class="tecla operador" data-key=")">
+          <span class="principal">)</span>
+        </button>
+        <button type="button" class="tecla operador" data-key="%">
+          <span class="principal">%</span>
+        </button>
+
+        <!-- Fila 6: 7 8 9 ( ÷ ). -->
+        <button type="button" class="tecla digito" data-key="7">
+          <span class="principal">7</span>
+        </button>
+        <button type="button" class="tecla digito" data-key="8">
+          <span class="principal">8</span>
+        </button>
+        <button type="button" class="tecla digito" data-key="9">
+          <span class="principal">9</span>
+        </button>
+        <button type="button" class="tecla operador" data-key="÷">
+          <span class="principal">÷</span>
+        </button>
+        <button type="button" class="tecla operador" data-key="×">
+          <span class="principal">×</span>
+        </button>
+
+        <!-- Fila 7: 4 5 6 + −. -->
+        <button type="button" class="tecla digito" data-key="4">
+          <span class="principal">4</span>
+        </button>
+        <button type="button" class="tecla digito" data-key="5">
+          <span class="principal">5</span>
+        </button>
+        <button type="button" class="tecla digito" data-key="6">
+          <span class="principal">6</span>
+        </button>
+        <button type="button" class="tecla operador" data-key="−">
+          <span class="principal">−</span>
+        </button>
+        <button type="button" class="tecla operador" data-key="+">
+          <span class="principal">+</span>
+        </button>
+
+        <!-- Fila 8: 1 2 3 0 . con el igual (=) a lo ancho. -->
+        <button type="button" class="tecla digito" data-key="1">
+          <span class="principal">1</span>
+        </button>
+        <button type="button" class="tecla digito" data-key="2">
+          <span class="principal">2</span>
+        </button>
+        <button type="button" class="tecla digito" data-key="3">
+          <span class="principal">3</span>
+        </button>
+        <button type="button" class="tecla digito" data-key="0">
+          <span class="principal">0</span>
+        </button>
+        <button type="button" class="tecla digito" data-key=".">
+          <span class="principal">.</span>
+        </button>
+
+        <!-- Fila 9: cero ya colocado arriba; igual (=) ancho para cerrar. -->
+        <button type="button" class="tecla igual ancho-2" data-key="=">
+          <span class="principal">=</span>
+        </button>
+      </section>
+    </main>
+
+    <script>
+      // ===================================================================
+      // Módulo JavaScript embebido de la Calculadora Científica (Casio
+      // fx-82MS). Toda la lógica vive en este único archivo (Requirement 1.7),
+      // sin dependencias ni archivos externos, de modo que index.html funciona
+      // al abrirlo directamente en el navegador.
+      //
+      // Se usa una IIFE que encapsula los cuatro dominios conceptuales de
+      // design.md y, al final, cablea los eventos de la UI:
+      //   - Motor_Cálculo     (tokenizer -> parser -> evaluator, función pura)
+      //   - Estado            (CalculatorState y transiciones puras)
+      //   - Display Controller (renderiza Línea_Superior / Línea_Inferior)
+      //   - Input Handler     (manejarTecla: mapea pulsaciones a acciones)
+      //
+      // ESPEJO DE src/*.js: la lógica pura (Motor_Cálculo, Estado, Display
+      // Controller e Input Handler) se desarrolla y verifica de forma aislada
+      // como módulos ES en src/engine.js, src/state.js, src/display.js y
+      // src/input.js (unit + property-based tests con fast-check). Para cumplir
+      // el Requirement 1.7 (archivo único autocontenido) ese mismo código se
+      // EMBEBE aquí sin cambios de comportamiento. Al editar la lógica, hay que
+      // mantener sincronizadas ambas copias; las pruebas en src/ son la fuente
+      // de verdad del comportamiento.
+      // ===================================================================
+      (function () {
+        "use strict";
+
+        // =================================================================
+        // Motor_Cálculo (espejo de src/engine.js) — función pura, sin DOM.
+        // =================================================================
+        const TipoError = Object.freeze({
+          DIVISION_POR_CERO: "DIVISION_POR_CERO",
+          DOMINIO: "DOMINIO",
+          PARENTESIS: "PARENTESIS",
+          SINTAXIS: "SINTAXIS",
+          DESBORDAMIENTO: "DESBORDAMIENTO",
+          EXPONENTE_FUERA_RANGO: "EXPONENTE_FUERA_RANGO",
+        });
+
+        const MENSAJES = Object.freeze({
+          [TipoError.DIVISION_POR_CERO]: "Math ERROR: division por cero",
+          [TipoError.DOMINIO]: "Math ERROR: fuera de dominio",
+          [TipoError.PARENTESIS]: "Syntax ERROR: parentesis",
+          [TipoError.SINTAXIS]: "Syntax ERROR: expresion no valida",
+          [TipoError.DESBORDAMIENTO]: "Math ERROR: desbordamiento",
+          [TipoError.EXPONENTE_FUERA_RANGO]:
+            "Syntax ERROR: exponente fuera de rango",
+        });
+
+        class ErrorCalculo extends Error {
+          constructor(tipo) {
+            super(MENSAJES[tipo] ?? "ERROR");
+            this.name = "ErrorCalculo";
+            this.tipo = tipo;
+            this.mensaje = this.message;
+          }
+        }
+
+        const EXPONENTE_MIN = -99;
+        const EXPONENTE_MAX = 99;
+
+        const TipoToken = Object.freeze({
+          NUMERO: "NÚMERO",
+          OPERADOR: "OPERADOR",
+          FUNCION_PREFIJA: "FUNCIÓN_PREFIJA",
+          OPERADOR_POSTFIJO: "OPERADOR_POSTFIJO",
+          PAREN_IZQ: "PAREN_IZQ",
+          PAREN_DER: "PAREN_DER",
+          CONSTANTE: "CONSTANTE",
+        });
+
+        const OPERADORES = new Set(["+", "−", "×", "÷", "^"]);
+        const FUNCIONES_PREFIJAS = ["sin", "cos", "tan", "log", "ln", "√", "∛"];
+        const OPERADORES_POSTFIJOS = ["x²", "x³", "x⁻¹", "%"];
+        const CONSTANTE_PI = "π";
+
+        function interpretarNumeroEXP(lexema) {
+          const partes = lexema.split("E");
+          if (partes.length !== 2) {
+            throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          const [mantisaTxt, exponenteTxt] = partes;
+          if (!/^[+-]?(\d+\.?\d*|\.\d+)$/.test(mantisaTxt)) {
+            throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          if (!/^[+-]?\d+$/.test(exponenteTxt)) {
+            throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          const mantisa = Number(mantisaTxt);
+          const exponente = Number(exponenteTxt);
+          if (exponente < EXPONENTE_MIN || exponente > EXPONENTE_MAX) {
+            throw new ErrorCalculo(TipoError.EXPONENTE_FUERA_RANGO);
+          }
+          return mantisa * Math.pow(10, exponente);
+        }
+
+        function interpretarNumeroSimple(lexema) {
+          if (!/^(\d+\.?\d*|\.\d+)$/.test(lexema)) {
+            throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          return Number(lexema);
+        }
+
+        function escanearNumero(texto, i) {
+          let j = i;
+          while (j < texto.length && /[0-9.]/.test(texto[j])) {
+            j++;
+          }
+          if (j < texto.length && texto[j] === "E") {
+            j++;
+            if (j < texto.length && (texto[j] === "+" || texto[j] === "-")) {
+              j++;
+            }
+            while (j < texto.length && /[0-9]/.test(texto[j])) {
+              j++;
+            }
+          }
+          return { lexema: texto.slice(i, j), fin: j };
+        }
+
+        function tokenizar(expresion) {
+          const texto = String(expresion);
+          const tokens = [];
+          let i = 0;
+          while (i < texto.length) {
+            const c = texto[i];
+            if (/\s/.test(c)) {
+              i++;
+              continue;
+            }
+            if (/[0-9.]/.test(c)) {
+              const { lexema, fin } = escanearNumero(texto, i);
+              const valor = lexema.includes("E")
+                ? interpretarNumeroEXP(lexema)
+                : interpretarNumeroSimple(lexema);
+              tokens.push({ tipo: TipoToken.NUMERO, lexema, valor });
+              i = fin;
+              continue;
+            }
+            if (c === "(") {
+              tokens.push({ tipo: TipoToken.PAREN_IZQ, lexema: c });
+              i++;
+              continue;
+            }
+            if (c === ")") {
+              tokens.push({ tipo: TipoToken.PAREN_DER, lexema: c });
+              i++;
+              continue;
+            }
+            if (c === CONSTANTE_PI) {
+              tokens.push({ tipo: TipoToken.CONSTANTE, lexema: c, valor: Math.PI });
+              i++;
+              continue;
+            }
+            if (OPERADORES.has(c)) {
+              tokens.push({ tipo: TipoToken.OPERADOR, lexema: c });
+              i++;
+              continue;
+            }
+            const postfijo = coincidePrefijo(texto, i, OPERADORES_POSTFIJOS);
+            if (postfijo !== null) {
+              tokens.push({ tipo: TipoToken.OPERADOR_POSTFIJO, lexema: postfijo });
+              i += postfijo.length;
+              continue;
+            }
+            const funcion = coincidePrefijo(texto, i, FUNCIONES_PREFIJAS);
+            if (funcion !== null) {
+              tokens.push({ tipo: TipoToken.FUNCION_PREFIJA, lexema: funcion });
+              i += funcion.length;
+              continue;
+            }
+            throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          return tokens;
+        }
+
+        function coincidePrefijo(texto, i, candidatos) {
+          let mejor = null;
+          for (const cand of candidatos) {
+            if (texto.startsWith(cand, i)) {
+              if (mejor === null || cand.length > mejor.length) {
+                mejor = cand;
+              }
+            }
+          }
+          return mejor;
+        }
+
+        function nodoNumero(valor) {
+          return { clase: "numero", valor };
+        }
+        function nodoConstante(nombre) {
+          return { clase: "constante", nombre };
+        }
+        function nodoBinario(op, izq, der) {
+          return { clase: "binario", op, izq, der };
+        }
+        function nodoUnarioPre(fn, arg) {
+          return { clase: "unarioPre", fn, arg };
+        }
+        function nodoUnarioPost(op, arg) {
+          return { clase: "unarioPost", op, arg };
+        }
+
+        const OPERADORES_ADITIVOS = new Set(["+", "−"]);
+        const OPERADORES_MULTIPLICATIVOS = new Set(["×", "÷"]);
+
+        function parsear(tokens) {
+          if (!Array.isArray(tokens) || tokens.length === 0) {
+            throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          const estado = { tokens, pos: 0 };
+          const nodo = parsearExpresion(estado);
+          if (estado.pos !== tokens.length) {
+            const sobrante = estado.tokens[estado.pos];
+            if (sobrante.tipo === TipoToken.PAREN_DER) {
+              throw new ErrorCalculo(TipoError.PARENTESIS);
+            }
+            throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          return nodo;
+        }
+
+        function actual(estado) {
+          return estado.pos < estado.tokens.length
+            ? estado.tokens[estado.pos]
+            : null;
+        }
+
+        function parsearExpresion(estado) {
+          return parsearTerminoAdit(estado);
+        }
+
+        function parsearTerminoAdit(estado) {
+          let izq = parsearTerminoMult(estado);
+          let tok = actual(estado);
+          while (
+            tok !== null &&
+            tok.tipo === TipoToken.OPERADOR &&
+            OPERADORES_ADITIVOS.has(tok.lexema)
+          ) {
+            estado.pos++;
+            const der = parsearTerminoMult(estado);
+            izq = nodoBinario(tok.lexema, izq, der);
+            tok = actual(estado);
+          }
+          return izq;
+        }
+
+        function parsearTerminoMult(estado) {
+          let izq = parsearPotencia(estado);
+          let tok = actual(estado);
+          while (
+            tok !== null &&
+            tok.tipo === TipoToken.OPERADOR &&
+            OPERADORES_MULTIPLICATIVOS.has(tok.lexema)
+          ) {
+            estado.pos++;
+            const der = parsearPotencia(estado);
+            izq = nodoBinario(tok.lexema, izq, der);
+            tok = actual(estado);
+          }
+          return izq;
+        }
+
+        function parsearPotencia(estado) {
+          const base = parsearUnarioPost(estado);
+          const tok = actual(estado);
+          if (tok !== null && tok.tipo === TipoToken.OPERADOR && tok.lexema === "^") {
+            estado.pos++;
+            const exponente = parsearPotencia(estado);
+            return nodoBinario("^", base, exponente);
+          }
+          return base;
+        }
+
+        function parsearUnarioPost(estado) {
+          let arg = parsearUnarioPre(estado);
+          let tok = actual(estado);
+          while (tok !== null && tok.tipo === TipoToken.OPERADOR_POSTFIJO) {
+            estado.pos++;
+            arg = nodoUnarioPost(tok.lexema, arg);
+            tok = actual(estado);
+          }
+          return arg;
+        }
+
+        function parsearUnarioPre(estado) {
+          const tok = actual(estado);
+          if (tok !== null && tok.tipo === TipoToken.FUNCION_PREFIJA) {
+            estado.pos++;
+            const arg = parsearUnarioPre(estado);
+            return nodoUnarioPre(tok.lexema, arg);
+          }
+          return parsearPrimario(estado);
+        }
+
+        function parsearPrimario(estado) {
+          const tok = actual(estado);
+          if (tok === null) {
+            throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          if (tok.tipo === TipoToken.NUMERO) {
+            estado.pos++;
+            return nodoNumero(tok.valor);
+          }
+          if (tok.tipo === TipoToken.CONSTANTE) {
+            estado.pos++;
+            return nodoConstante(tok.lexema);
+          }
+          if (tok.tipo === TipoToken.PAREN_IZQ) {
+            estado.pos++;
+            const interno = parsearExpresion(estado);
+            const cierre = actual(estado);
+            if (cierre === null || cierre.tipo !== TipoToken.PAREN_DER) {
+              throw new ErrorCalculo(TipoError.PARENTESIS);
+            }
+            estado.pos++;
+            return interno;
+          }
+          if (tok.tipo === TipoToken.PAREN_DER) {
+            throw new ErrorCalculo(TipoError.PARENTESIS);
+          }
+          throw new ErrorCalculo(TipoError.SINTAXIS);
+        }
+
+        function aplicarBinario(op, izq, der) {
+          switch (op) {
+            case "+":
+              return izq + der;
+            case "−":
+              return izq - der;
+            case "×":
+              return izq * der;
+            case "÷":
+              if (der === 0) {
+                throw new ErrorCalculo(TipoError.DIVISION_POR_CERO);
+              }
+              return izq / der;
+            case "^":
+              return Math.pow(izq, der);
+            default:
+              throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+        }
+
+        const GRADOS_A_RADIANES = Math.PI / 180;
+        const UMBRAL_CERO_TRIG = 1e-10;
+
+        function evaluarTrigonometrica(fn, grados) {
+          const rad = grados * GRADOS_A_RADIANES;
+          let valor;
+          switch (fn) {
+            case "sin":
+              valor = Math.sin(rad);
+              break;
+            case "cos":
+              valor = Math.cos(rad);
+              break;
+            case "tan":
+              if (Math.abs(Math.cos(rad)) < UMBRAL_CERO_TRIG) {
+                throw new ErrorCalculo(TipoError.DOMINIO);
+              }
+              valor = Math.tan(rad);
+              break;
+            default:
+              throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+          if (Math.abs(valor) < UMBRAL_CERO_TRIG) {
+            return 0;
+          }
+          return valor;
+        }
+
+        function evaluarNodo(nodo) {
+          switch (nodo.clase) {
+            case "numero":
+              return nodo.valor;
+            case "constante":
+              if (nodo.nombre === CONSTANTE_PI) {
+                return Math.PI;
+              }
+              throw new ErrorCalculo(TipoError.SINTAXIS);
+            case "binario": {
+              const izq = evaluarNodo(nodo.izq);
+              const der = evaluarNodo(nodo.der);
+              const valor = aplicarBinario(nodo.op, izq, der);
+              if (!Number.isFinite(valor)) {
+                throw new ErrorCalculo(TipoError.DESBORDAMIENTO);
+              }
+              return valor;
+            }
+            case "unarioPost": {
+              const arg = evaluarNodo(nodo.arg);
+              let valor;
+              switch (nodo.op) {
+                case "%":
+                  valor = arg / 100;
+                  break;
+                case "x²":
+                  valor = arg ** 2;
+                  break;
+                case "x³":
+                  valor = arg ** 3;
+                  break;
+                case "x⁻¹":
+                  if (arg === 0) {
+                    throw new ErrorCalculo(TipoError.DIVISION_POR_CERO);
+                  }
+                  valor = 1 / arg;
+                  break;
+                default:
+                  throw new ErrorCalculo(TipoError.SINTAXIS);
+              }
+              if (!Number.isFinite(valor)) {
+                throw new ErrorCalculo(TipoError.DESBORDAMIENTO);
+              }
+              return valor;
+            }
+            case "unarioPre": {
+              const arg = evaluarNodo(nodo.arg);
+              if (nodo.fn === "sin" || nodo.fn === "cos" || nodo.fn === "tan") {
+                const valor = evaluarTrigonometrica(nodo.fn, arg);
+                if (!Number.isFinite(valor)) {
+                  throw new ErrorCalculo(TipoError.DESBORDAMIENTO);
+                }
+                return valor;
+              }
+              let valor;
+              switch (nodo.fn) {
+                case "log":
+                  if (arg <= 0) {
+                    throw new ErrorCalculo(TipoError.DOMINIO);
+                  }
+                  valor = Math.log10(arg);
+                  break;
+                case "ln":
+                  if (arg <= 0) {
+                    throw new ErrorCalculo(TipoError.DOMINIO);
+                  }
+                  valor = Math.log(arg);
+                  break;
+                case "√":
+                  if (arg < 0) {
+                    throw new ErrorCalculo(TipoError.DOMINIO);
+                  }
+                  valor = Math.sqrt(arg);
+                  break;
+                case "∛":
+                  valor = Math.cbrt(arg);
+                  break;
+                default:
+                  throw new ErrorCalculo(TipoError.SINTAXIS);
+              }
+              if (!Number.isFinite(valor)) {
+                throw new ErrorCalculo(TipoError.DESBORDAMIENTO);
+              }
+              return valor;
+            }
+            default:
+              throw new ErrorCalculo(TipoError.SINTAXIS);
+          }
+        }
+
+        function evaluar(expresion) {
+          try {
+            const tokens = tokenizar(expresion);
+            const ast = parsear(tokens);
+            const valor = evaluarNodo(ast);
+            if (!Number.isFinite(valor)) {
+              throw new ErrorCalculo(TipoError.DESBORDAMIENTO);
+            }
+            return { ok: true, valor };
+          } catch (e) {
+            if (e instanceof ErrorCalculo) {
+              return { ok: false, error: { tipo: e.tipo, mensaje: e.mensaje } };
+            }
+            const error = new ErrorCalculo(TipoError.SINTAXIS);
+            return {
+              ok: false,
+              error: { tipo: error.tipo, mensaje: error.mensaje },
+            };
+          }
+        }
+
+        const MotorCalculo = { TipoError, tokenizar, parsear, evaluar };
+
+        // =================================================================
+        // Estado / CalculatorState (espejo de src/state.js) — transiciones
+        // puras.
+        // =================================================================
+        const EstadoError = Object.freeze({ NINGUNO: "NINGUNO", ...TipoError });
+        const LINEA_INFERIOR_CERO = "0";
+
+        function estadoInicial() {
+          return {
+            expresion: "",
+            cursor: 0,
+            lineaInferior: LINEA_INFERIOR_CERO,
+            ans: 0,
+            tieneResultado: false,
+            estadoError: EstadoError.NINGUNO,
+          };
+        }
+
+        function posicionCursor(estado) {
+          const n = estado.expresion.length;
+          const c = Number.isInteger(estado.cursor) ? estado.cursor : n;
+          if (c < 0) return 0;
+          if (c > n) return n;
+          return c;
+        }
+
+        function insertarToken(estado, texto) {
+          const cursor = posicionCursor(estado);
+          const expresion =
+            estado.expresion.slice(0, cursor) +
+            texto +
+            estado.expresion.slice(cursor);
+          return {
+            ...estado,
+            expresion,
+            cursor: cursor + texto.length,
+            estadoError: EstadoError.NINGUNO,
+          };
+        }
+
+        function esCaracterNumerico(c) {
+          return c === "." || (c >= "0" && c <= "9");
+        }
+
+        function segmentoNumericoTienePunto(expresion, cursor) {
+          let i = cursor - 1;
+          while (i >= 0 && esCaracterNumerico(expresion[i])) {
+            if (expresion[i] === ".") return true;
+            i--;
+          }
+          let j = cursor;
+          while (j < expresion.length && esCaracterNumerico(expresion[j])) {
+            if (expresion[j] === ".") return true;
+            j++;
+          }
+          return false;
+        }
+
+        function insertarDecimal(estado) {
+          const cursor = posicionCursor(estado);
+          if (segmentoNumericoTienePunto(estado.expresion, cursor)) {
+            return estado;
+          }
+          return insertarToken(estado, ".");
+        }
+
+        function del(estado) {
+          if (estado.expresion.length === 0) {
+            return estado;
+          }
+          const cursor = posicionCursor(estado);
+          if (cursor === 0) {
+            return estado;
+          }
+          const expresion =
+            estado.expresion.slice(0, cursor - 1) + estado.expresion.slice(cursor);
+          return {
+            ...estado,
+            expresion,
+            cursor: cursor - 1,
+            estadoError: EstadoError.NINGUNO,
+          };
+        }
+
+        function ac() {
+          return estadoInicial();
+        }
+
+        function formatearAns(ans) {
+          const valor = Number.isFinite(ans) ? ans : 0;
+          return String(valor);
+        }
+
+        function insertarAns(estado) {
+          return insertarToken(estado, formatearAns(estado.ans));
+        }
+
+        function formatearResultado(valor) {
+          if (!Number.isFinite(valor)) {
+            return LINEA_INFERIOR_CERO;
+          }
+          if (valor === 0) {
+            return LINEA_INFERIOR_CERO;
+          }
+          return String(Number(valor.toPrecision(12)));
+        }
+
+        function aplicarIgual(estado) {
+          const resultado = evaluar(estado.expresion);
+          if (resultado.ok) {
+            return {
+              ...estado,
+              lineaInferior: formatearResultado(resultado.valor),
+              ans: resultado.valor,
+              tieneResultado: true,
+              estadoError: EstadoError.NINGUNO,
+            };
+          }
+          return {
+            ...estado,
+            ans: estado.ans,
+            tieneResultado: estado.tieneResultado,
+            estadoError: resultado.error.tipo,
+            lineaInferior: resultado.error.mensaje,
+          };
+        }
+
+        function teclaDecorativa(estado) {
+          return estado;
+        }
+
+        const Estado = {
+          estadoInicial,
+          insertarToken,
+          insertarDecimal,
+          del,
+          ac,
+          insertarAns,
+          aplicarIgual,
+          teclaDecorativa,
+          formatearResultado,
+          EstadoError,
+        };
+
+        // =================================================================
+        // Display Controller (espejo de src/display.js) — deriva las dos
+        // líneas y las escribe en el DOM (único punto que toca el DOM).
+        // =================================================================
+        function esAnchoValido(ancho) {
+          return Number.isInteger(ancho) && ancho > 0;
+        }
+
+        function posicionCursorDisplay(estado) {
+          const n = typeof estado?.expresion === "string" ? estado.expresion.length : 0;
+          const c = Number.isInteger(estado?.cursor) ? estado.cursor : n;
+          if (c < 0) return 0;
+          if (c > n) return n;
+          return c;
+        }
+
+        function esResultadoNumerico(estado) {
+          return (
+            estado?.tieneResultado === true &&
+            estado?.estadoError === EstadoError.NINGUNO &&
+            typeof estado?.ans === "number" &&
+            Number.isFinite(estado.ans)
+          );
+        }
+
+        function normalizarExponencial(cadena) {
+          return cadena.replace(/e([+-])(\d+)/i, (_m, signo, digitos) => {
+            const exp = digitos.replace(/^0+(?=\d)/, "");
+            return signo === "-" ? `e-${exp}` : `e${exp}`;
+          });
+        }
+
+        function notacionCientificaEnAncho(valor, ancho) {
+          const maxDecimales = Math.min(100, Math.max(0, ancho));
+          for (let d = maxDecimales; d >= 0; d--) {
+            const candidato = normalizarExponencial(valor.toExponential(d));
+            if (candidato.length <= ancho) {
+              return candidato;
+            }
+          }
+          return normalizarExponencial(valor.toExponential(0));
+        }
+
+        function formatearLineaInferiorAncho(valor, ancho) {
+          const decimal = formatearResultado(valor);
+          if (!esAnchoValido(ancho) || decimal.length <= ancho) {
+            return decimal;
+          }
+          if (!Number.isFinite(valor) || valor === 0) {
+            return decimal;
+          }
+          return notacionCientificaEnAncho(valor, ancho);
+        }
+
+        function ventanaLineaSuperior(expresion, cursor, ancho) {
+          const texto = typeof expresion === "string" ? expresion : "";
+          if (!esAnchoValido(ancho) || texto.length <= ancho) {
+            return texto;
+          }
+          const n = texto.length;
+          let pos = Number.isInteger(cursor) ? cursor : n;
+          if (pos < 0) pos = 0;
+          if (pos > n) pos = n;
+          let fin = n;
+          if (pos < fin - ancho) {
+            fin = pos + ancho;
+          }
+          if (pos > fin) {
+            fin = pos;
+          }
+          const inicio = fin - ancho;
+          return texto.slice(inicio, fin);
+        }
+
+        function derivarLineas(estado, ancho) {
+          const expresion =
+            typeof estado?.expresion === "string" ? estado.expresion : "";
+          const inferiorEstado =
+            typeof estado?.lineaInferior === "string" &&
+            estado.lineaInferior.length > 0
+              ? estado.lineaInferior
+              : "0";
+          if (!esAnchoValido(ancho)) {
+            return { lineaSuperior: expresion, lineaInferior: inferiorEstado };
+          }
+          const lineaSuperior = ventanaLineaSuperior(
+            expresion,
+            posicionCursorDisplay(estado),
+            ancho
+          );
+          let lineaInferior = inferiorEstado;
+          if (esResultadoNumerico(estado) && inferiorEstado !== "0") {
+            lineaInferior = formatearLineaInferiorAncho(estado.ans, ancho);
+          }
+          return { lineaSuperior, lineaInferior };
+        }
+
+        function renderizar(estado, domRefs, ancho) {
+          const { lineaSuperior, lineaInferior } = derivarLineas(estado, ancho);
+          const nodoSuperior = domRefs?.lineaSuperior ?? domRefs?.superior;
+          const nodoInferior = domRefs?.lineaInferior ?? domRefs?.inferior;
+          if (nodoSuperior) {
+            nodoSuperior.textContent = lineaSuperior;
+          }
+          if (nodoInferior) {
+            nodoInferior.textContent = lineaInferior;
+          }
+        }
+
+        const DisplayController = { derivarLineas, renderizar };
+
+        // =================================================================
+        // Input Handler (espejo de src/input.js) — manejarTecla puro.
+        // =================================================================
+        const TECLAS_DECORATIVAS = Object.freeze([
+          "SHIFT",
+          "ALPHA",
+          "MODE",
+          "RCL",
+          "nCr",
+          "hyp",
+        ]);
+        const DECORATIVAS = new Set(TECLAS_DECORATIVAS);
+        const CONTROLES = Object.freeze({
+          DEL: del,
+          AC: ac,
+          Ans: insertarAns,
+          "=": aplicarIgual,
+        });
+
+        function manejarTecla(tecla, estado) {
+          if (typeof tecla !== "string" || tecla.length === 0) {
+            return estado;
+          }
+          if (DECORATIVAS.has(tecla)) {
+            return teclaDecorativa(estado);
+          }
+          const control = CONTROLES[tecla];
+          if (control) {
+            return control(estado);
+          }
+          if (tecla === ".") {
+            return insertarDecimal(estado);
+          }
+          return insertarToken(estado, tecla);
+        }
+
+        const InputHandler = { manejarTecla, TECLAS_DECORATIVAS };
+
+        // Superficie pública (depuración / reutilización); no es necesaria para
+        // el funcionamiento, pero conserva el contrato previo del andamiaje.
+        window.Calculadora = {
+          MotorCalculo,
+          Estado,
+          DisplayController,
+          InputHandler,
+        };
+
+        // =================================================================
+        // Cableado de la UI: eventos de ratón y teclado físico -> manejarTecla
+        // -> actualizar estado -> re-renderizar la Pantalla (Requirements 2.1,
+        // 2.2, 2.3; 9.1-9.7; 10.2-10.4).
+        // =================================================================
+
+        // Mapea una pulsación de teclado físico (KeyboardEvent) al
+        // DescriptorTecla (`data-key`) correspondiente, o null si la tecla no
+        // tiene equivalente en la calculadora (se ignora). Permite operar con el
+        // teclado físico además del ratón.
+        function descriptorDesdeTeclado(e) {
+          const k = e.key;
+          // Dígitos y punto decimal directos.
+          if (/^[0-9]$/.test(k)) return k;
+          if (k === ".") return ".";
+          // Operadores: se aceptan los signos ASCII habituales y se traducen a
+          // los lexemas Unicode que reconoce el Motor_Cálculo.
+          switch (k) {
+            case "+":
+              return "+";
+            case "-":
+              return "−"; // signo menos Unicode
+            case "*":
+              return "×";
+            case "/":
+              return "÷";
+            case "^":
+              return "^";
+            case "(":
+              return "(";
+            case ")":
+              return ")";
+            case "%":
+              return "%";
+            case "=":
+            case "Enter":
+              return "=";
+            case "Backspace":
+              return "DEL";
+            case "Delete":
+            case "Escape":
+              return "AC";
+            default:
+              return null;
+          }
+        }
+
+        function iniciar() {
+          const refs = {
+            lineaSuperior: document.getElementById("linea-superior"),
+            lineaInferior: document.getElementById("linea-inferior"),
+          };
+          const teclado = document.getElementById("teclado");
+
+          // Estado a nivel de módulo: parte del CalculatorState inicial. Al
+          // renderizarlo, la Línea_Inferior pasa a "0" (Requirements 1.3, 2.4).
+          let estado = estadoInicial();
+
+          function actualizar(tecla) {
+            estado = manejarTecla(tecla, estado);
+            renderizar(estado, refs);
+          }
+
+          // Render inicial del estado (Línea_Superior vacía, Línea_Inferior "0").
+          renderizar(estado, refs);
+
+          // Eventos de ratón: delegación sobre la rejilla. Cada tecla declara su
+          // `data-key`; al hacer clic se resuelve el botón más cercano con ese
+          // atributo y se procesa su descriptor.
+          if (teclado) {
+            teclado.addEventListener("click", (e) => {
+              const boton = e.target.closest("[data-key]");
+              if (!boton || !teclado.contains(boton)) return;
+              actualizar(boton.getAttribute("data-key"));
+            });
+          }
+
+          // Eventos de teclado físico: se traduce la tecla a un DescriptorTecla
+          // y, si existe equivalente, se procesa. Se previene el comportamiento
+          // por defecto (p. ej. que "/" abra la búsqueda rápida) solo cuando la
+          // tecla corresponde a una acción de la calculadora.
+          document.addEventListener("keydown", (e) => {
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            const tecla = descriptorDesdeTeclado(e);
+            if (tecla === null) return;
+            e.preventDefault();
+            actualizar(tecla);
+          });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", iniciar);
+        } else {
+          iniciar();
+        }
+      })();
+    </script>
+  </body>
+</html>

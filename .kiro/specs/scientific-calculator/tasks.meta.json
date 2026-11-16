@@ -1,0 +1,1020 @@
+{
+  "pbtResults": {
+    "2.3 Escribir prueba basada en propiedades para el exponente EXP fuera de rango": {
+      "status": "passed",
+      "lastRunTimestamp": 1794840959872
+    },
+    "2.2 Escribir prueba basada en propiedades para la equivalencia de la notación EXP": {
+      "status": "passed",
+      "lastRunTimestamp": 1794840571777
+    },
+    "3.2 Escribir prueba basada en propiedades para los paréntesis no balanceados": {
+      "status": "passed",
+      "lastRunTimestamp": 1794840700540
+    },
+    "3.3 Escribir prueba basada en propiedades para las entradas mal formadas": {
+      "status": "passed",
+      "lastRunTimestamp": 1794840835096
+    },
+    "4.3 Escribir prueba basada en propiedades para la división por cero": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841148526
+    },
+    "4.4 Escribir prueba basada en propiedades para el desbordamiento": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841148707
+    },
+    "4.2 Escribir prueba basada en propiedades para la precedencia aritmética": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841153872
+    },
+    "6.2 Escribir prueba basada en propiedades para el porcentaje": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841346371
+    },
+    "6.7 Escribir prueba basada en propiedades para los logaritmos": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841504688
+    },
+    "6.5 Escribir prueba basada en propiedades para la normalización trigonométrica a cero": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841543635
+    },
+    "6.4 Escribir prueba basada en propiedades para las funciones trigonométricas": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841535646
+    },
+    "6.8 Escribir prueba basada en propiedades para potencias y raíces": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841539136
+    },
+    "6.9 Escribir prueba basada en propiedades para operaciones inversas": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841577843
+    },
+    "6.10 Escribir prueba basada en propiedades para los errores de dominio": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841777095
+    },
+    "8.2 Escribir prueba basada en propiedades para el único separador decimal": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841887187
+    },
+    "8.6 Escribir prueba basada en propiedades para la inserción de Ans": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841949908
+    },
+    "8.5 Escribir prueba basada en propiedades para DEL": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841951269
+    },
+    "8.3 Escribir prueba basada en propiedades para el éxito del cálculo y Ans": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841953400
+    },
+    "8.4 Escribir prueba basada en propiedades para el fallo del cálculo y conservación de Ans": {
+      "status": "passed",
+      "lastRunTimestamp": 1794841954096
+    },
+    "8.7 Escribir prueba basada en propiedades para las teclas decorativas": {
+      "status": "passed",
+      "lastRunTimestamp": 1794842059921
+    },
+    "9.3 Escribir prueba basada en propiedades para el reflejo de la Línea_Superior": {
+      "status": "passed",
+      "lastRunTimestamp": 1794842632503
+    },
+    "9.4 Escribir prueba basada en propiedades para la notación científica por ancho": {
+      "status": "passed",
+      "lastRunTimestamp": 1794842640242
+    }
+  },
+  "executionHistory": {
+    "2.3 Escribir prueba basada en propiedades para el exponente EXP fuera de rango": [
+      {
+        "executionId": "933e96a3-4479-42b8-8d4e-c25b28516793",
+        "chatSessionId": "sess_bab7ab67-7367-4ad3-a9ac-d963c9e32503",
+        "timestamp": 1794839771943
+      },
+      {
+        "executionId": "933e96a3-4479-42b8-8d4e-c25b28516793",
+        "chatSessionId": "sess_bab7ab67-7367-4ad3-a9ac-d963c9e32503",
+        "timestamp": 1794840052815
+      }
+    ],
+    "1. Crear el andamiaje del archivo HTML único": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840065220
+      },
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840078663
+      },
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840239887
+      }
+    ],
+    "2.1 Implementar `tokenizar(expresión) -> Token[]`": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840065346
+      },
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840246034
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840383824
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840396916
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840450191
+      }
+    ],
+    "2.2 Escribir prueba basada en propiedades para la equivalencia de la notación EXP": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840065555
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840383994
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840453796
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840604745
+      }
+    ],
+    "3.1 Implementar `parsear(tokens) -> NodoAST`": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840065689
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840384126
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840454938
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840603993
+      }
+    ],
+    "3.2 Escribir prueba basada en propiedades para los paréntesis no balanceados": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840065825
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840384261
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840608470
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841059694
+      }
+    ],
+    "3.3 Escribir prueba basada en propiedades para las entradas mal formadas": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840065968
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840384397
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840610127
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841058772
+      }
+    ],
+    "4.1 Implementar `evaluar(expresión) -> { ok, valor } | { ok:false, error }` para aritmética base": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840066293
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840384534
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840611081
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841057443
+      }
+    ],
+    "4.2 Escribir prueba basada en propiedades para la precedencia aritmética": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840066546
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840384799
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841063796
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841179271
+      }
+    ],
+    "4.3 Escribir prueba basada en propiedades para la división por cero": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840066772
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840384963
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841065162
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841180225
+      }
+    ],
+    "4.4 Escribir prueba basada en propiedades para el desbordamiento": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840066908
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840385095
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841066571
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841181664
+      }
+    ],
+    "5. Checkpoint - Motor base verificado": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840067021
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840385249
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794851220509
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794851223712
+      }
+    ],
+    "6.1 Implementar el operador de porcentaje y las constantes": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840067243
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840385375
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841067417
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841182606
+      }
+    ],
+    "6.2 Escribir prueba basada en propiedades para el porcentaje": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840067377
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840385514
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841193263
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841410487
+      }
+    ],
+    "6.3 Implementar las funciones trigonométricas en grados": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840067503
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840385657
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841191372
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841407865
+      }
+    ],
+    "6.4 Escribir prueba basada en propiedades para las funciones trigonométricas": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840067685
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840385795
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841416163
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841595388
+      }
+    ],
+    "6.5 Escribir prueba basada en propiedades para la normalización trigonométrica a cero": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840067877
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840385918
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841417502
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841597775
+      }
+    ],
+    "6.6 Implementar logaritmos, potencias y raíces": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840068011
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840386068
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841192328
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841409307
+      }
+    ],
+    "6.7 Escribir prueba basada en propiedades para los logaritmos": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840068142
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840386224
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841418821
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841594114
+      }
+    ],
+    "6.8 Escribir prueba basada en propiedades para potencias y raíces": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840068354
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840386445
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841420295
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841598879
+      }
+    ],
+    "6.9 Escribir prueba basada en propiedades para operaciones inversas": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840068486
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840386628
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841421144
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841596298
+      }
+    ],
+    "6.10 Escribir prueba basada en propiedades para los errores de dominio": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840068610
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840386831
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841603591
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841804048
+      }
+    ],
+    "7. Checkpoint - Motor científico completo verificado": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840068866
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840387052
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794851226870
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794851229811
+      }
+    ],
+    "8.1 Implementar `CalculatorState` y las transiciones puras de estado": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840068992
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840387182
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841602547
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841805022
+      }
+    ],
+    "8.2 Escribir prueba basada en propiedades para el único separador decimal": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840069146
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840387325
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841810708
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841972475
+      }
+    ],
+    "8.3 Escribir prueba basada en propiedades para el éxito del cálculo y Ans": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840069391
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840387450
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841812092
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841970278
+      }
+    ],
+    "8.4 Escribir prueba basada en propiedades para el fallo del cálculo y conservación de Ans": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840069513
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840387583
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841813003
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841971673
+      }
+    ],
+    "8.5 Escribir prueba basada en propiedades para DEL": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840069635
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840387733
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841814476
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841968833
+      }
+    ],
+    "8.6 Escribir prueba basada en propiedades para la inserción de Ans": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840069851
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840387850
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841815436
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841967512
+      }
+    ],
+    "8.7 Escribir prueba basada en propiedades para las teclas decorativas": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840069984
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840388072
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841977170
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842119765
+      }
+    ],
+    "9.1 Implementar `renderizar(estado)` para ambas líneas": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840070109
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840388266
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841978048
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842118732
+      }
+    ],
+    "9.2 Implementar el desplazamiento horizontal y la notación científica por desbordamiento de ancho": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840070301
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840388373
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842123946
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842543206
+      }
+    ],
+    "9.3 Escribir prueba basada en propiedades para el reflejo de la Línea_Superior": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840070469
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840388516
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842553284
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794849970672
+      }
+    ],
+    "9.4 Escribir prueba basada en propiedades para la notación científica por ancho": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840070594
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840388679
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842554636
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794849969267
+      }
+    ],
+    "9.5 Escribir pruebas de ejemplo de estados puntuales y casos borde del Display": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840070713
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840388848
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842556179
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794849971719
+      }
+    ],
+    "10.1 Construir la carcasa, la Pantalla y la rejilla de teclado": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840070907
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840388978
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842125044
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842544228
+      }
+    ],
+    "10.2 Escribir pruebas de ejemplo/snapshot del DOM de la UI": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840071083
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840389126
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842556858
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794849967905
+      }
+    ],
+    "11.1 Implementar `manejarTecla(tecla, estado)` y el cableado de eventos": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840071205
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840389278
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842551964
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794849966735
+      }
+    ],
+    "11.2 Escribir prueba de ejemplo de latencia de actualización": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840071321
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840389558
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794849975686
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794851208977
+      }
+    ],
+    "12. Checkpoint final - Integración completa verificada": [
+      {
+        "executionId": "7fa50a08-5cf9-4858-83e7-211647cff8e7",
+        "chatSessionId": "sess_7a7deda0-7489-4b34-8bb7-bd676be9e369",
+        "timestamp": 1794840071490
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840389750
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794851315493
+      },
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794851318549
+      }
+    ],
+    "2. Implementar el Tokenizer del Motor_Cálculo": [
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794840604929
+      }
+    ],
+    "3. Implementar el Parser recursivo descendente del Motor_Cálculo": [
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841059843
+      }
+    ],
+    "4. Implementar el Evaluator del Motor_Cálculo (aritmética, paréntesis y precedencia)": [
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841181793
+      }
+    ],
+    "6. Ampliar el Evaluator con porcentaje, trigonometría, logaritmos, potencias y raíces": [
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794841804168
+      }
+    ],
+    "8. Implementar el estado central y la gestión de Ans": [
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794842119901
+      }
+    ],
+    "10. Maquetar la UI estilo Casio fx-82MS (HTML + CSS embebidos)": [
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794849968060
+      }
+    ],
+    "9. Implementar el Display Controller de dos líneas": [
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794849971892
+      }
+    ],
+    "11. Implementar el Input Handler y conectar UI, estado, motor y display": [
+      {
+        "executionId": "705db2cf-fefc-45df-af8e-d8822cd4aa6b",
+        "chatSessionId": "sess_4bb4f682-3a2a-4151-ac16-71d1b3a581fb",
+        "timestamp": 1794851209244
+      }
+    ]
+  }
+}
